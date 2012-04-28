@@ -9,7 +9,7 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.18
-Release:	1
+Release:	2
 Group:		System/Libraries 
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -43,7 +43,6 @@ This package contains the shared library for %{name}.
 %package -n %{girname}
 Summary: GObject Introspection interface description for %{name}
 Group: System/Libraries
-Requires: %{libname} = %{version}-%{release}
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
@@ -52,6 +51,7 @@ GObject Introspection interface description for %{name}.
 Summary: Development files for accountsservice-libs
 Group: System/Libraries 
 Requires: %{libname} = %{version}-%{release}
+Requires: %{girname} = %{version}-%{release}
 
 %description -n %{develname}
 The accountsservice-devel package contains headers and other
