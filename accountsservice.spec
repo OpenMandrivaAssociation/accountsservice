@@ -8,25 +8,25 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.18
-Release:	2
+Version:	0.6.22
+Release:	1
 Group:		System/Libraries 
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
 Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
 
-BuildRequires:  intltool
-BuildRequires:  pkgconfig(dbus-glib-1)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
-BuildRequires:  pkgconfig(polkit-agent-1)
+BuildRequires:	intltool
+BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(polkit-agent-1)
 %if %{_with_systemd}
-BuildRequires:  systemd-units
+BuildRequires:	systemd-units
 %endif
 
-Requires: polkit
-Requires: consolekit
-Requires: shadow-utils
+Requires:	polkit
+Requires:	consolekit
+Requires:	shadow-utils
 
 %description
 The accountsservice project provides a set of D-Bus interfaces for
@@ -34,24 +34,24 @@ querying and manipulating user account information and an implementation
 of these interfaces, based on the useradd, usermod and userdel commands.
 
 %package -n %{libname}
-Summary: Client-side library to talk to accountservice
-Group: System/Libraries 
+Summary:	Client-side library to talk to accountservice
+Group:		System/Libraries
 
 %description -n %{libname}
 This package contains the shared library for %{name}.
 
 %package -n %{girname}
-Summary: GObject Introspection interface description for %{name}
-Group: System/Libraries
+Summary:	GObject Introspection interface description for %{name}
+Group:		System/Libraries
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
 %package -n %{develname}
-Summary: Development files for accountsservice-libs
-Group: System/Libraries 
-Requires: %{libname} = %{version}-%{release}
-Requires: %{girname} = %{version}-%{release}
+Summary:	Development files for accountsservice-libs
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 
 %description -n %{develname}
 The accountsservice-devel package contains headers and other
@@ -101,4 +101,3 @@ files needed to build applications that use accountsservice-libs.
 %{_libdir}/libaccountsservice.so
 %{_libdir}/pkgconfig/accountsservice.pc
 %{_datadir}/gir-1.0/AccountsService-%{api}.gir
-
