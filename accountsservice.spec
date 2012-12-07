@@ -8,7 +8,7 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.25
+Version:	0.6.29
 Release:	1
 Group:		System/Libraries 
 License:	GPLv3+
@@ -101,3 +101,4 @@ files needed to build applications that use accountsservice-libs.
 %{_libdir}/libaccountsservice.so
 %{_libdir}/pkgconfig/accountsservice.pc
 %{_datadir}/gir-1.0/AccountsService-%{api}.gir
+%{_datadir}/gtk-doc/html/libaccountsservice/
