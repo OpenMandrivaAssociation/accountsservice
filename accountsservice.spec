@@ -9,7 +9,7 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.30
-Release:	1
+Release:	2
 Group:		System/Libraries 
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -18,15 +18,16 @@ Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 %if %{_with_systemd}
+BuildRequires:	pkgconfig(libsystemd-login)
+BuildRequires:	pkgconfig(libsystemd-daemon)
 BuildRequires:	systemd-units
 %endif
-
-Requires:	polkit
-Requires:	consolekit
-Requires:	shadow-utils
+Requires(post,postun):	rpm-helper
+Requires:		polkit
+Requires:		shadow-utils
 
 %description
 The accountsservice project provides a set of D-Bus interfaces for
@@ -36,6 +37,7 @@ of these interfaces, based on the useradd, usermod and userdel commands.
 %package -n %{libname}
 Summary:	Client-side library to talk to accountservice
 Group:		System/Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 This package contains the shared library for %{name}.
