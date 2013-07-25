@@ -1,5 +1,3 @@
-%define _with_systemd 1
-
 %define api 1.0
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -8,7 +6,7 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.32
+Version:	0.6.34
 Release:	1
 Group:		System/Libraries 
 License:	GPLv3+
@@ -21,11 +19,9 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
-%if %{_with_systemd}
 BuildRequires:	pkgconfig(libsystemd-login)
 BuildRequires:	pkgconfig(libsystemd-daemon)
 BuildRequires:	systemd-units
-%endif
 Requires(post,postun):	rpm-helper
 Requires:		polkit
 Requires:		shadow-utils
@@ -67,11 +63,7 @@ files needed to build applications that use accountsservice-libs.
 %build
 %configure2_5x \
 	--disable-static \
-%if !%{_with_systemd}
-	--without-systemdsystemunitdir
-%else
 	--with-systemdsystemunitdir=%{_systemunitdir}
-%endif
 
 %make LIBS='-lgmodule-2.0'
 
@@ -90,9 +82,7 @@ files needed to build applications that use accountsservice-libs.
 %dir %{_localstatedir}/lib/AccountsService/
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
-%if %{_with_systemd}
 %{_systemunitdir}/accounts-daemon.service
-%endif
 
 %files -n %{libname}
 %{_libdir}/libaccountsservice.so.%{major}*
