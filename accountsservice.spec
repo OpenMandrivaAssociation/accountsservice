@@ -6,8 +6,8 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.34
-Release:	6.1
+Version:	0.6.39
+Release:	1
 Group:		System/Libraries 
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -65,6 +65,8 @@ files needed to build applications that use accountsservice-libs.
 %configure2_5x \
 	--disable-static \
     --enable-systemd \
+    --enable-user-heuristics \
+    --with-minimum-uid=500 \
 	--with-systemdsystemunitdir=%{_systemunitdir}
 
 %make LIBS='-lgmodule-2.0'
