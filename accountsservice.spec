@@ -23,11 +23,11 @@ BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd-login)
 BuildRequires:	pkgconfig(libsystemd-daemon)
-BuildRequires:	systemd-units
-Requires(post,preun,postun):	rpm-helper
-Requires:		polkit
-Requires:		shadow-utils
-Requires:		%{libname} = %{EVRD}
+BuildRequires:	systemd
+Requires:	systemd
+Requires:	polkit
+Requires:	shadow
+Requires:	%{libname} = %{EVRD}
 
 %description
 The accountsservice project provides a set of D-Bus interfaces for
@@ -64,26 +64,17 @@ files needed to build applications that use accountsservice-libs.
 
 %build
 %configure \
-	--disable-static \
+    --disable-static \
     --enable-systemd \
     --enable-user-heuristics \
     --with-minimum-uid=500 \
-	--with-systemdsystemunitdir=%{_systemunitdir}
+    --with-systemdsystemunitdir=%{_systemunitdir}
 
 %make LIBS='-lgmodule-2.0'
 
 %install
 %makeinstall_std
 %find_lang accounts-service
-
-%post
-%systemd_post accounts-daemon.service
-
-%preun
-%systemd_preun accounts-daemon.service
-
-%postun
-%systemd_postun accounts-daemon.service
 
 %files -f accounts-service.lang
 %doc COPYING README AUTHORS
