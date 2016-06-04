@@ -1,0 +1,45 @@
+From 5632b2dc30b59b0c2879434cec3518583616b0ff Mon Sep 17 00:00:00 2001
+From: Sam Spilsbury <smspillaz@gmail.com>
+Date: Tue, 21 Jul 2015 08:15:49 +0800
+Subject: [PATCH 10/12] Makefile: Move to AM_DISTCHECK_CONFIGURE_FLAGS
+
+Since automake 1.11.2 it is recommended that packages
+use AM_DISTCHECK_CONFIGURE_FLAGS instead of
+DISTCHECK_CONFIGURE_FLAGS as the latter is intended
+to be a user variable.
+
+[endlessm/eos-sdk#3303]
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94749
+---
+ Makefile.am  | 2 +-
+ configure.ac | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 566df70..3c0edcd 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ 
+ EXTRA_DIST = gtk-doc.make
+ 
+-DISTCHECK_CONFIGURE_FLAGS = \
++AM_DISTCHECK_CONFIGURE_FLAGS = \
+ 	--enable-gtk-doc \
+ 	--enable-docbook-docs \
+ 	--with-systemdsystemunitdir=$$dc_install_base/$(systemdsystemunitdir)
+diff --git a/configure.ac b/configure.ac
+index 15e3b06..b526a90 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1,5 +1,5 @@
+ AC_INIT([AccountsService],[0.6.40])
+-AM_INIT_AUTOMAKE(no-dist-gzip dist-xz tar-ustar foreign)
++AM_INIT_AUTOMAKE([1.11.2 no-dist-gzip dist-xz tar-ustar foreign])
+ 
+ GETTEXT_PACKAGE=accounts-service
+ AC_SUBST(GETTEXT_PACKAGE)
+-- 
+1.9.5
+
