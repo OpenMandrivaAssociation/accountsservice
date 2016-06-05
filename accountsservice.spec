@@ -7,12 +7,25 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.40
-Release:	7
+Release:	8
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
 Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
 Patch0:		accountsservice-0.6.37-filter-bin-true-login-shell-users-from-user-list.patch
+# (tpg) patches from upstream git
+Patch1:		0001-lib-add-language-to-SetLanguage-failure.patch
+Patch2:		0002-daemon-remove-dead-code.patch
+Patch3:		0003-lib-Copy-password-hint-instead-of-user-s-real-name.patch
+Patch4:		0004-lib-clean-up-debug-message.patch
+Patch5:		0005-accountsservice-Add-SetPasswordHint-function.patch
+Patch6:		0006-lib-Use-G_PARAM_STATIC_STRINGS.patch
+Patch7:		0007-lib-fix-misleading-debug-message.patch
+Patch8:		0008-wtmp-fix-wtmp-file-on-solaris-and-netbsd.patch
+Patch9:		0009-systemd-check-for-libsystemd-instead-of-libsystemd-l.patch
+Patch10:	0010-Makefile-Move-to-AM_DISTCHECK_CONFIGURE_FLAGS.patch
+Patch11:	0011-Allow-remote-inactive-users-to-change-their-own-data.patch
+Patch12:	0012-systemd-disable-GVFS-support.patch
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gio-2.0)
@@ -21,8 +34,7 @@ BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
-BuildRequires:	pkgconfig(libsystemd-login)
-BuildRequires:	pkgconfig(libsystemd-daemon)
+BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd
 Requires:	polkit
 Requires:	shadow

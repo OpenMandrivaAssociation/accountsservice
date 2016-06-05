@@ -1,0 +1,27 @@
+From c7f2abd1b5f2916b8a61dcf86cb245f898123f12 Mon Sep 17 00:00:00 2001
+From: Ray Strode <rstrode@redhat.com>
+Date: Thu, 22 Jan 2015 17:19:34 -0500
+Subject: [PATCH 01/12] lib: add language to SetLanguage failure
+
+<PaulePanter> halfline: Could you please add the language to the error message in
+ `src/libaccountsservice/act-user.c`?
+---
+ src/libaccountsservice/act-user.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/libaccountsservice/act-user.c b/src/libaccountsservice/act-user.c
+index 456261b..c2e773a 100644
+--- a/src/libaccountsservice/act-user.c
++++ b/src/libaccountsservice/act-user.c
+@@ -1627,7 +1627,7 @@ act_user_set_language (ActUser    *user,
+                                                    language,
+                                                    NULL,
+                                                    &error)) {
+-                g_warning ("SetLanguage call failed: %s", error->message);
++                g_warning ("SetLanguage for language %s failed: %s", language, error->message);
+                 g_error_free (error);
+                 return;
+         }
+-- 
+1.9.5
+

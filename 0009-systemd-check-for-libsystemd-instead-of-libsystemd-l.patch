@@ -1,0 +1,29 @@
+From 3b2ff77f18746fbd2b7538c659bc8eb6211859b0 Mon Sep 17 00:00:00 2001
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Tue, 18 Aug 2015 13:37:14 +0200
+Subject: [PATCH 09/12] systemd: check for libsystemd instead of
+ libsystemd-login
+
+Signed-off-by: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91678
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 4ba53ad..15e3b06 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -267,7 +267,7 @@ AC_ARG_ENABLE([systemd],
+               [enable_systemd=auto])
+ 
+ if test x$enable_systemd != xno; then
+-   PKG_CHECK_MODULES(SYSTEMD, [libsystemd-login >= 186],
++   PKG_CHECK_MODULES(SYSTEMD, [libsystemd >= 186],
+ 			                     [have_systemd=yes], [have_systemd=no])
+ else
+    have_systemd=no
+-- 
+1.9.5
+
