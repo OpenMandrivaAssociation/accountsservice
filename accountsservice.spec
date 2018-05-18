@@ -6,7 +6,7 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.47
+Version:	0.6.49
 Release:	1
 Group:		System/Libraries
 License:	GPLv3+
