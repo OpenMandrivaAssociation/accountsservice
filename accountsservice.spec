@@ -21,6 +21,7 @@ BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	systemd
 Requires:	polkit
 Requires:	shadow
 Requires:	%{libname} = %{EVRD}
