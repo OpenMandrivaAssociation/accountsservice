@@ -7,7 +7,7 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.49
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -71,6 +71,12 @@ files needed to build applications that use accountsservice-libs.
 
 %install
 %makeinstall_std
+
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-tuned.preset << EOF
+enable accounts-daemon.service
+EOF
+
 %find_lang accounts-service
 
 %files -f accounts-service.lang
