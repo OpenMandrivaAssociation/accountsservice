@@ -73,7 +73,7 @@ files needed to build applications that use accountsservice-libs.
 %makeinstall_std
 
 install -d %{buildroot}%{_presetdir}
-cat > %{buildroot}%{_presetdir}/86-tuned.preset << EOF
+cat > %{buildroot}%{_presetdir}/86-%{name}.preset << EOF
 enable accounts-daemon.service
 EOF
 
@@ -91,6 +91,7 @@ EOF
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
 %{_systemunitdir}/accounts-daemon.service
+%{_presetdir}/86-%{name}.preset
 
 %files -n %{libname}
 %{_libdir}/libaccountsservice.so.%{major}*
