@@ -6,7 +6,7 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.49
+Version:	0.6.50
 Release:	1
 Group:		System/Libraries
 License:	GPLv3+
@@ -21,6 +21,7 @@ BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	systemd-macros
 Requires:	polkit
 Requires:	shadow
 Requires:	%{libname} = %{EVRD}
@@ -71,6 +72,12 @@ files needed to build applications that use accountsservice-libs.
 
 %install
 %makeinstall_std
+
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-%{name}.preset << EOF
+enable accounts-daemon.service
+EOF
+
 %find_lang accounts-service
 
 %files -f accounts-service.lang
@@ -85,6 +92,7 @@ files needed to build applications that use accountsservice-libs.
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
 %{_systemunitdir}/accounts-daemon.service
+%{_presetdir}/86-%{name}.preset
 
 %files -n %{libname}
 %{_libdir}/libaccountsservice.so.%{major}*
