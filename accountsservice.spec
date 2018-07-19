@@ -6,8 +6,8 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.49
-Release:	2
+Version:	0.6.50
+Release:	1
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -21,7 +21,7 @@ BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
-BuildRequires:	systemd
+BuildRequires:	systemd-macros
 Requires:	polkit
 Requires:	shadow
 Requires:	%{libname} = %{EVRD}
