@@ -17,7 +17,6 @@ BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
@@ -99,4 +98,3 @@ EOF
 %{_libdir}/libaccountsservice.so
 %{_libdir}/pkgconfig/accountsservice.pc
 %{_datadir}/gir-1.0/AccountsService-%{api}.gir
-%{_datadir}/gtk-doc/html/libaccountsservice/
