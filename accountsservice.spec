@@ -85,7 +85,7 @@ EOF
 %dir %{_localstatedir}/lib/AccountsService/
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
-%{_systemunitdir}/accounts-daemon.service
+%{_unitdir}/accounts-daemon.service
 %{_presetdir}/86-%{name}.preset
 
 %files -n %{libname}
