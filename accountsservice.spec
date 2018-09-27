@@ -75,7 +75,7 @@ EOF
 %find_lang accounts-service
 
 %files -f accounts-service.lang
-%doc COPYING README AUTHORS
+%doc COPYING AUTHORS
 %{_sysconfdir}/dbus-1/system.d/org.freedesktop.Accounts.conf
 %{_libexecdir}/accounts-daemon
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Accounts.xml
