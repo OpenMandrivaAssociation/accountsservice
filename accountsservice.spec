@@ -6,7 +6,7 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.50
+Version:	0.6.53
 Release:	1
 Group:		System/Libraries
 License:	GPLv3+
@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-macros
+BuildRequires:	meson
 Requires:	polkit
 Requires:	shadow
 Requires:	%{libname} = %{EVRD}
@@ -57,21 +58,14 @@ The accountsservice-devel package contains headers and other
 files needed to build applications that use accountsservice-libs.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
+%meson -Dsystemdsystemunitdir="%{_unitdir}" -Dsystemd=true -Duser_heuristics=true -Dminimum_uid=1000
 
 %build
-%configure \
-    --disable-static \
-    --enable-systemd \
-    --enable-user-heuristics \
-    --with-minimum-uid=1000 \
-    --with-systemdsystemunitdir=%{_systemunitdir}
-
-%make LIBS='-lgmodule-2.0'
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-%{name}.preset << EOF
