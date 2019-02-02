@@ -7,11 +7,14 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.54
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
 Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
+# (crazy) use our defaults so all GUIs etc do the same.
+# only drop if upstream implements something about these.
+Patch10:	default-distro-groups.patch
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gio-2.0)
