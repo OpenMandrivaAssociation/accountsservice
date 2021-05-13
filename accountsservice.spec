@@ -7,7 +7,7 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	0.6.55
-Release:	3
+Release:	4
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -23,11 +23,12 @@ BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
-BuildRequires:	systemd-macros
+BuildRequires:	systemd-rpm-macros
 BuildRequires:	meson
 Requires:	polkit
 Requires:	shadow
 Requires:	%{libname} = %{EVRD}
+%systemd_requires
 
 %description
 The accountsservice project provides a set of D-Bus interfaces for
@@ -69,7 +70,18 @@ files needed to build applications that use accountsservice-libs.
 %install
 %meson_install
 
+mkdir -p %{buildroot}%{_datadir}/accountsservice/interfaces/
+
 %find_lang accounts-service
+
+%post
+%systemd_post accounts-daemon.service
+
+%preun
+%systemd_preun accounts-daemon.service
+
+%postun
+%systemd_postun accounts-daemon.service
 
 %files -f accounts-service.lang
 %doc COPYING AUTHORS
@@ -82,6 +94,8 @@ files needed to build applications that use accountsservice-libs.
 %dir %{_localstatedir}/lib/AccountsService/
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
+%dir %{_datadir}/accountsservice
+%dir %{_datadir}/accountsservice/interfaces
 %{_unitdir}/accounts-daemon.service
 
 %files -n %{libname}
