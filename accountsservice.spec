@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	vala vala-tools
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	meson
 Requires:	polkit
