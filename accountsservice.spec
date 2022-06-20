@@ -1,13 +1,13 @@
 %define api 1.0
 %define major 0
-%define libname %mklibname %{name} %{major}
+%define libname %mklibname %{name}
 %define girname %mklibname %{name}-gir %{api}
 %define develname %mklibname -d %{name}
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	0.6.55
-Release:	4
+Version:	22.08.8
+Release:	1
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -39,6 +39,7 @@ of these interfaces, based on the useradd, usermod and userdel commands.
 Summary:	Client-side library to talk to accountservice
 Group:		System/Libraries
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{mklibname %{name} %{major}} < %{EVRD}
 
 %description -n %{libname}
 This package contains the shared library for %{name}.
@@ -60,9 +61,17 @@ Requires:	%{girname} = %{version}-%{release}
 The accountsservice-devel package contains headers and other
 files needed to build applications that use accountsservice-libs.
 
+%package vala
+Summary:	Vala language bindings for %{name}
+Group:		Development/Vala
+Requires:	%{develname} = %{EVRD}
+
+%description vala
+Vala language bindings for %{name}
+
 %prep
 %autosetup -p1
-%meson -Dsystemdsystemunitdir="%{_unitdir}" -Dsystemd=true -Duser_heuristics=true -Dminimum_uid=1000
+%meson -Dsystemdsystemunitdir="%{_unitdir}" -Dminimum_uid=1000
 
 %build
 %meson_build
@@ -85,17 +94,16 @@ mkdir -p %{buildroot}%{_datadir}/accountsservice/interfaces/
 
 %files -f accounts-service.lang
 %doc COPYING AUTHORS
-%{_sysconfdir}/dbus-1/system.d/org.freedesktop.Accounts.conf
+%{_datadir}/dbus-1/system.d/org.freedesktop.Accounts.conf
 %{_libexecdir}/accounts-daemon
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Accounts.xml
 %{_datadir}/dbus-1/interfaces/org.freedesktop.Accounts.User.xml
 %{_datadir}/dbus-1/system-services/org.freedesktop.Accounts.service
 %{_datadir}/polkit-1/actions/org.freedesktop.accounts.policy
+%{_datadir}/accountsservice
 %dir %{_localstatedir}/lib/AccountsService/
 %dir %{_localstatedir}/lib/AccountsService/users
 %dir %{_localstatedir}/lib/AccountsService/icons
-%dir %{_datadir}/accountsservice
-%dir %{_datadir}/accountsservice/interfaces
 %{_unitdir}/accounts-daemon.service
 
 %files -n %{libname}
@@ -109,3 +117,6 @@ mkdir -p %{buildroot}%{_datadir}/accountsservice/interfaces/
 %{_libdir}/libaccountsservice.so
 %{_libdir}/pkgconfig/accountsservice.pc
 %{_datadir}/gir-1.0/AccountsService-%{api}.gir
+
+%files vala
+%{_datadir}/vala/vapi/*
