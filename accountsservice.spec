@@ -7,7 +7,7 @@
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
 Version:	22.08.8
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
