@@ -1,0 +1,12 @@
+diff -up accountsservice-23.13.9/subprojects/mocklibc-1.0/src/netgroup-debug.c.omv~ accountsservice-23.13.9/subprojects/mocklibc-1.0/src/netgroup-debug.c
+--- accountsservice-23.13.9/subprojects/mocklibc-1.0/src/netgroup-debug.c.omv~	2024-08-05 18:10:39.189567797 +0200
++++ accountsservice-23.13.9/subprojects/mocklibc-1.0/src/netgroup-debug.c	2024-08-05 18:11:00.133792354 +0200
+@@ -21,6 +21,8 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
++extern void print_indent(FILE *stream, unsigned int indent);
++
+ void netgroup_debug_print_entry(struct entry *entry, FILE *stream, unsigned int indent) {
+   print_indent(stream, indent);
+ 

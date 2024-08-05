@@ -1,2 +1,4 @@
 sources:
-  accountsservice-22.08.8.tar.xz: d38b1ff51d31cbd49344509f19cc0c75977a4f1f
+  accountsservice-23.13.9.tar.xz: 78419e5fa8fbb485f6b939e180fe26f2efc3c103
+  mocklibc-1.0.tar.gz: feb6b2a2a2ac02310e4f7fbfbbbcd0fecb2cfe2e
+  get_zip: 15904a4686eb4b737dbf81774588b7f33ea62541

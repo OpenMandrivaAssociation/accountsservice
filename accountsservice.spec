@@ -6,15 +6,18 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	22.08.8
-Release:	3
+Version:	23.13.9
+Release:	1
 Group:		System/Libraries
 License:	GPLv3+
 URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
 Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
+Source1:	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mocklibc/mocklibc-1.0.tar.gz
+Source2:	https://wrapdb.mesonbuild.com/v1/projects/mocklibc/1.0/2/get_zip
 # (crazy) use our defaults so all GUIs etc do the same.
 # only drop if upstream implements something about these.
 Patch10:	default-distro-groups.patch
+Patch11:	accountsservice-23.13.9-compile.patch
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gio-2.0)
@@ -71,7 +74,13 @@ Requires:	%{develname} = %{EVRD}
 Vala language bindings for %{name}
 
 %prep
-%autosetup -p1
+%setup -q
+cd subprojects
+tar xf %{S:1}
+tar xf %{S:2}
+cd ..
+%autopatch -p1
+
 %meson -Dsystemdsystemunitdir="%{_unitdir}" -Dminimum_uid=1000
 
 %build
