@@ -10,7 +10,7 @@ Version:	23.13.9
 Release:	1
 Group:		System/Libraries
 License:	GPLv3+
-URL:		http://www.fedoraproject.org/wiki/Features/UserAccountDialog
+URL:		https://www.fedoraproject.org/wiki/Features/UserAccountDialog
 Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
 Source1:	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mocklibc/mocklibc-1.0.tar.gz
 Source2:	https://wrapdb.mesonbuild.com/v1/projects/mocklibc/1.0/2/get_zip
