@@ -1,13 +1,13 @@
 %define api 1.0
-%define major 0
+%define major 1
 %define libname %mklibname %{name}
 %define girname %mklibname %{name}-gir %{api}
 %define develname %mklibname -d %{name}
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	23.13.9
-Release:	2
+Version:	26.26.9
+Release:	1
 Group:		System/Libraries
 License:	GPLv3+
 URL:		https://www.fedoraproject.org/wiki/Features/UserAccountDialog
@@ -16,13 +16,14 @@ Source1:	https://storage.googleapis.com/google-code-archive-downloads/v2/code.go
 Source2:	https://wrapdb.mesonbuild.com/v1/projects/mocklibc/1.0/2/get_zip
 # (crazy) use our defaults so all GUIs etc do the same.
 # only drop if upstream implements something about these.
-Patch10:	default-distro-groups.patch
+#Patch10:	default-distro-groups.patch
 Patch11:	accountsservice-23.13.9-compile.patch
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(json-c)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(polkit-agent-1)
 BuildRequires:	pkgconfig(libsystemd)
