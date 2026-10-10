@@ -6,12 +6,13 @@
 
 Summary:	D-Bus interfaces for querying and manipulating user account information
 Name:		accountsservice
-Version:	26.26.9
+Version:	26.27.3
 Release:	1
 Group:		System/Libraries
 License:	GPLv3+
 URL:		https://www.fedoraproject.org/wiki/Features/UserAccountDialog
-Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
+#Source0:	http://www.freedesktop.org/software/accountsservice/%{name}-%{version}.tar.xz
+Source0:  https://gitlab.freedesktop.org/accountsservice/accountsservice/-/archive/%{version}/accountsservice-%{version}.tar.bz2
 Source1:	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mocklibc/mocklibc-1.0.tar.gz
 Source2:	https://wrapdb.mesonbuild.com/v1/projects/mocklibc/1.0/2/get_zip
 # (crazy) use our defaults so all GUIs etc do the same.
